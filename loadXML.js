@@ -1,7 +1,7 @@
 function loadXMLDoc(){
 	document.getElementById("basic info").innerHTML = "loading";
 	var input = document.getElementById("userInput").value;
-	var output =retrieveJson("https://api.github.com/users/"+input);
+	var output = retrieveJson("https://api.github.com/users/"+input);
 	console.log(output);
 	loadBaiscInfo(output);
 	listFollowers(retrieveJson(output.followers_url));
@@ -13,7 +13,6 @@ function retrieveJson(url){
 	var Httpreq = new XMLHttpRequest(); // a new request
     Httpreq.open("GET",url,false);
     Httpreq.send(null);
-	
 	x = JSON.parse(Httpreq.responseText);
     return x;
 }
