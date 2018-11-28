@@ -83,7 +83,11 @@ function listFollowers(obj){
 function commitHistory(jsonText){
 	var data =getData(jsonText);
 	console.log(data);
-	body.replaceChild(follower_table,document.getElementById("Commits"))
+	var commits = document.createElement("div");
+	commits.id  = "Commits";
+	contents.innerHTML = data;
+	var body = 	document.getElementById("wrapping");
+	body.replaceChild(commits,document.getElementById("Commits"))
 }
 
 function getData(obj){
