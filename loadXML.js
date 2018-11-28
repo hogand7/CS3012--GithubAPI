@@ -38,7 +38,7 @@ function loadBaiscInfo(obj){
 	contents.id = "basicContents"
 	//add to wrapping tag
 	contents.innerHTML = 
-		"Name:" + name +", Login: "+ login + ", Followers:"+followers + ", Following: " +following;
+		"Name: " + name +", Login: "+ login + ", Followers: "+followers + ", Following: " +following;
 	info.appendChild(avatar);
 	info.appendChild(contents);
 	
