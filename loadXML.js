@@ -79,30 +79,3 @@ function listFollowers(obj){
 	var body = 	document.getElementById("wrapping");
 	body.replaceChild(follower_table,document.getElementById("F_T"))
 }
-
-function commitHistory(jsonText){
-	var data =getData(jsonText);
-	console.log(data);
-	var commits = document.createElement("div");
-	commits.id  = "Commits";
-	contents.innerHTML = data;
-	var body = 	document.getElementById("wrapping");
-	body.replaceChild(commits,document.getElementById("Commits"))
-}
-
-function getData(obj){
-	var repos = retrieveJson(obj.repos_url);
-	var commits = [];
-	var commit_count =0;
-	console.log(repos.length);
-	var returnData=[];
-	for(var i = 0 ; i<repos.length;i++)
-	{
-		c_url =repos[i].commits_url.substring(0,repos[i].commits_url.length-6) + "?per_page=100";
-		commits = retrieveJson(c_url);
-		commit_count += commits.length;
-		returnData.push({"repo_name":repos[i].name, "commits":commits.length});
-	}
-	console.log(returnData);
-	return returnData;
-}
