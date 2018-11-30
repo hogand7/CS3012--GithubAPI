@@ -4,6 +4,17 @@ function loadXMLDoc(){
 	var output = retrieveJson("https://api.github.com/users/"+input);
 	console.log(output);
 	loadBaiscInfo(output);
+	var followers = retrieveJson(output.followers_url);
+	listFollowers(followers);
+	var chart = bubbleChart().width(600).height(400);
+    d3.select('#chart').datum(followers).call(chart);
+}
+
+function FollowersloadXMLDoc(input){
+	document.getElementById("basic info").innerHTML = "loading";
+	var output =retrieveJson("https://api.github.com/users/"+input);
+	console.log(output);
+	loadBaiscInfo(output);
 	listFollowers(retrieveJson(output.followers_url));
 	commitHistory(output);
 }
@@ -71,6 +82,7 @@ function listFollowers(obj){
 		contents.id = "followerContents";
 		avatar.src = follower_avatars[i];	
 		contents.innerHTML = "Login: "+ follower_logins[i];
+		user.setAttribute("onclick","FollowersloadXMLDoc('"+follower_logins[i] +"')");
 		user.appendChild(avatar);
 		user.appendChild(contents);
 		follower_table.appendChild(user);
